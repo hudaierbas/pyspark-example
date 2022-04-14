@@ -53,7 +53,7 @@ schema = StructType([
     StructField("TARIH", StringType(), True),
     StructField("ISIM", StringType(), True),
     StructField("TIP", StringType(), True),
-    StructField("UP", StringType(), True),
+    StructField("IP", StringType(), True),
     StructField("URL", StringType(), True)])
 
 df = spark.read.option("delimiter", "|").\
@@ -65,7 +65,7 @@ df = spark.read.option("delimiter", "|").\
 df.createOrReplaceTempView("log")
 df2 = spark.sql(args.query)
 
-df2.show(args.rows, args.showall)
+df2.show(int(args.rows), args.showall)
 
 # delete temp files
 for x in temp_files:
